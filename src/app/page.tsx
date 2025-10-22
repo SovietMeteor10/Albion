@@ -149,7 +149,7 @@ export default function Home() {
             
             {/* White line animation */}
             {showWhiteLine && animationPhase < 3 && (
-              <div className={`absolute top-1/2 left-0 bg-white transform -translate-y-1/2 w-[300vw] ${
+              <div className={`absolute top-0 left-0 bg-white w-[300vw] ${
                 animationPhase === 1 
                   ? 'h-[12rem] md:h-[14rem] lg:h-[16rem] animate-white-line-sweep' 
                   : animationPhase === 2
@@ -243,7 +243,7 @@ export default function Home() {
         <div className="w-full flex-1 flex items-center">
           <div className="w-full">
             <Image 
-              src="https://images.unsplash.com/photo-1529514498599-74ebec1ecc28?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2940" 
+              src="/images/image1.jpg" 
               alt="Albion" 
               width={2940}
               height={500}

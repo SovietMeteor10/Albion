@@ -55,8 +55,7 @@ body {
 }
 
 
-/* White line animation keyframes - PRESERVE IN PRODUCTION */
-/* CRITICAL: These keyframes must be preserved in production builds */
+/* White line animation keyframes */
 @keyframes whiteLineSweep {
   0% {
     transform: translateX(100vw);
@@ -75,13 +74,6 @@ body {
     height: 105vh;
     transform: translateX(-100vw);
   }
-}
-
-/* Force these classes to be included in production bundle */
-.animate-white-line-sweep,
-.animate-white-line-expand {
-  /* These classes are used in production */
-  display: block;
 }
 
 @keyframes whiteLineDisappear {

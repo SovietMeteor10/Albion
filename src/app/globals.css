@@ -80,6 +80,13 @@ body {
 .animate-white-line-sweep,
 .animate-white-line-expand {
   /* These classes must be preserved */
+  display: block;
+}
+
+/* Standalone white line animation - bypasses Tailwind completely */
+.white-line-animation {
+  /* This class ensures the element is preserved */
+  will-change: transform, height;
 }
 
 @keyframes whiteLineDisappear {

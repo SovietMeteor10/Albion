@@ -76,6 +76,12 @@ body {
   }
 }
 
+/* Force animations to be preserved in production builds */
+.animate-white-line-sweep,
+.animate-white-line-expand {
+  /* These classes must be preserved */
+}
+
 @keyframes whiteLineDisappear {
   0% {
     height: 150vh;

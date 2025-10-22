@@ -265,7 +265,7 @@ export default function Home() {
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">ABOUT</h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Albion is a British think tank dedicated to the complete renewal of our national foundations. We bring together individuals from every discipline to rethink how Britain works, from its institutions and industries to its cultural and civic life. Our mission is to drive Britain into a more prosperous, Anglofuturist age and your country needs you.
+                Albion is a British think tank dedicated to the complete renewal of our national foundations. We bring together individuals from every discipline to rethink how Britain works, from its institutions and industries to its cultural and civic life. Our mission is to drive Britain into a more prosperous, anglofuturist age and your country needs you.
               </p>
             </div>
             

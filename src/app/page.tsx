@@ -19,6 +19,10 @@ export default function Home() {
   const heroTextRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
+    // Preload the main image
+    const preloadImage = new window.Image();
+    preloadImage.src = '/images/image1.jpg';
+    
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
@@ -149,7 +153,7 @@ export default function Home() {
             
             {/* White line animation */}
             {showWhiteLine && animationPhase < 3 && (
-              <div className={`absolute top-0 left-0 bg-white w-[300vw] ${
+              <div className={`absolute top-1/2 left-0 bg-white transform -translate-y-1/2 w-[300vw] ${
                 animationPhase === 1 
                   ? 'h-[12rem] md:h-[14rem] lg:h-[16rem] animate-white-line-sweep' 
                   : animationPhase === 2

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -50,7 +51,7 @@ export default function Home() {
       }
     };
 
-    const handleTouchStart = (e: TouchEvent) => {
+    const handleTouchStart = () => {
       // If on landing page and user tries to scroll, trigger animation
       if (showLanding && animationPhase === 0) {
         triggerWhiteLineAnimation();
@@ -84,7 +85,7 @@ export default function Home() {
         const formData = new FormData();
         formData.append('entry.2091654403', email);
         
-        const response = await fetch('https://docs.google.com/forms/d/1SR8SdufF5mE_AYjn-Zz2T6_BCFI_0NMbxSf_ADkrYMM/formResponse', {
+        await fetch('https://docs.google.com/forms/d/1SR8SdufF5mE_AYjn-Zz2T6_BCFI_0NMbxSf_ADkrYMM/formResponse', {
           method: 'POST',
           body: formData,
           mode: 'no-cors' // Required for cross-origin requests to Google Forms
@@ -133,14 +134,6 @@ export default function Home() {
     }, 600); // Start expansion when line reaches 1.2x width (halfway through sweep)
   };
 
-  const resetAnimation = () => {
-    setShowWhiteLine(false);
-    setAnimationPhase(0);
-  };
-
-  const handleEnterSite = () => {
-    setShowLanding(false);
-  };
 
   if (showLanding) {
     return (
@@ -249,9 +242,11 @@ export default function Home() {
         
         <div className="w-full flex-1 flex items-center">
           <div className="w-full">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1529514498599-74ebec1ecc28?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2940" 
               alt="Albion" 
+              width={2940}
+              height={500}
               className="w-full h-[500px] object-cover rounded-sm shadow-lg"
             />
           </div>
@@ -273,7 +268,7 @@ export default function Home() {
             {/* Right side - Quote */}
             <div className="w-full">
               <blockquote className="text-2xl md:text-3xl text-black leading-tight mb-4 p-0">
-                "We are a nation with a destiny, not a destiny that others shall impose upon us, but one that we shall make from our own intelligence, courage, and unflagging will to progress. The British people are not the shadows of their ancestors; they are the makers of the modern world." <span className="text-base text-gray-600">→ H.G. Wells</span>
+                &ldquo;We are a nation with a destiny, not a destiny that others shall impose upon us, but one that we shall make from our own intelligence, courage, and unflagging will to progress. The British people are not the shadows of their ancestors; they are the makers of the modern world.&rdquo; <span className="text-base text-gray-600">→ H.G. Wells</span>
               </blockquote>
             </div>
           </div>

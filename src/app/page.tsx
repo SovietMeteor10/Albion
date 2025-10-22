@@ -153,13 +153,23 @@ export default function Home() {
             
             {/* White line animation */}
             {showWhiteLine && animationPhase < 3 && (
-              <div className={`absolute top-1/2 left-0 bg-white transform -translate-y-1/2 w-[300vw] ${
-                animationPhase === 1 
-                  ? 'h-[12rem] md:h-[14rem] lg:h-[16rem] animate-white-line-sweep' 
-                  : animationPhase === 2
-                  ? 'h-screen animate-white-line-expand'
-                  : ''
-              }`} />
+              <div 
+                className={`absolute top-1/2 left-0 bg-white transform -translate-y-1/2 w-[300vw] ${
+                  animationPhase === 1 
+                    ? 'h-[12rem] md:h-[14rem] lg:h-[16rem] animate-white-line-sweep' 
+                    : animationPhase === 2
+                    ? 'h-screen animate-white-line-expand'
+                    : ''
+                }`}
+                style={{
+                  // Fallback inline styles for production
+                  animation: animationPhase === 1 
+                    ? 'whiteLineSweep 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards'
+                    : animationPhase === 2
+                    ? 'whiteLineExpand 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards'
+                    : 'none'
+                }}
+              />
             )}
           </div>
 

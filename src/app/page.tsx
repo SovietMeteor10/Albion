@@ -122,7 +122,7 @@ export default function Home() {
     // Phase 1: White line sweep - line moves from right to left
     setAnimationPhase(1);
     setTimeout(() => {
-      // Phase 2: White line expand (0.6s) - expansion to 100vh
+      // Phase 2: White line expand (0.25s) - expansion to 100vh
       setAnimationPhase(2);
       setTimeout(() => {
         // Phase 3: Start fading in the webpage immediately when line reaches full height
@@ -135,59 +135,71 @@ export default function Home() {
           setAnimationPhase(0);
         }, 800); // Fade in duration
       }, 0); // Start fade in immediately when line reaches full height
-    }, 600); // Start expansion when line reaches 1.2x width (halfway through sweep)
+    }, 1000); // Start expansion slightly before sweep finishes (1.0s)
   };
 
 
   if (showLanding) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-        <div className="relative w-full h-full flex items-center justify-start pl-8 md:pl-16 lg:pl-24">
-          <div className="relative inline-block">
-            <h1 
-              ref={heroTextRef}
-              className="keep-calm-style text-[12rem] md:text-[14rem] lg:text-[16rem] text-white"
-            >
-              ALBION
-            </h1>
-            
-            {/* White line animation */}
-            {showWhiteLine && animationPhase < 3 && (
-              <div className={`absolute top-1/2 left-0 bg-white transform -translate-y-1/2 w-[300vw] ${
-                animationPhase === 1 
-                  ? 'h-[12rem] md:h-[14rem] lg:h-[16rem] animate-white-line-sweep' 
-                  : animationPhase === 2
-                  ? 'h-screen animate-white-line-expand'
-                  : ''
-              }`} />
-            )}
-          </div>
-
-          {/* Downward arrow */}
-          <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-opacity duration-200 ${
-            animationPhase >= 1 ? 'opacity-0' : 'opacity-100'
-          }`}>
-            <button
-              onClick={triggerWhiteLineAnimation}
-              className="text-white hover:text-gray-300"
-            >
-              <svg 
-                className="w-8 h-8" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
+      <>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+          <div className="relative w-full h-full flex items-center justify-start pl-8 md:pl-16 lg:pl-24">
+            <div className="relative inline-block">
+              <h1 
+                ref={heroTextRef}
+                className="keep-calm-style text-[12rem] md:text-[14rem] lg:text-[16rem] text-white"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-                />
-              </svg>
-            </button>
+                ALBION
+              </h1>
+            </div>
+
+            {/* Downward arrow */}
+            <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-opacity duration-200 ${
+              animationPhase >= 1 ? 'opacity-0' : 'opacity-100'
+            }`}>
+              <button
+                onClick={triggerWhiteLineAnimation}
+                className="text-white hover:text-gray-300"
+              >
+                <svg 
+                  className="w-8 h-8" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+        
+        {/* White line animation - positioned over the ALBION text */}
+        {showWhiteLine && animationPhase < 3 && (
+          <div className={`fixed left-0 bg-white w-[300vw] z-[60] ${
+            animationPhase === 1 
+              ? 'h-[12rem] md:h-[14rem] lg:h-[16rem] animate-white-line-sweep' 
+              : animationPhase === 2
+              ? 'animate-white-line-expand'
+              : ''
+          }`} 
+          style={{
+            top: 'calc(50vh - 6.5rem)',
+            left: '0',
+            transform: 'translateY(-50%)',
+            position: 'fixed',
+            width: '300vw',
+            zIndex: 60,
+            height: animationPhase === 2 ? '100vh' : animationPhase === 1 ? '13rem' : '13rem'
+          }}
+          />
+        )}
+      </>
     );
   }
 
